@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> {
 
-    // Comparamos el objeto completo, Spring se encarga de los IDs por debajo
     @Query("SELECT COUNT(i) > 0 FROM Inscripcion i WHERE i.alumno.id = :idAlumno AND i.curso.id = :idCurso")
     boolean existsByAlumnoYCurso(@Param("idAlumno") Long idAlumno, @Param("idCurso") Long idCurso);
 

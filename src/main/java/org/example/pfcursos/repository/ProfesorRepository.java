@@ -11,7 +11,7 @@ public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
     // Validación de correo único para profesores
     boolean existsByCorreo(String correo);
 
-    // Regla: Un profesor es activo si tiene al menos un curso asignado
+    // Un profesor es activo si tiene al menos un curso asignado
     @Query("SELECT p FROM Profesor p WHERE size(p.cursos) > 0")
     List<Profesor> findActiveProfesores();
 }

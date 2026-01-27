@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RevisionRepository extends JpaRepository<Revision, Long> {
 
-
-    // Si usas idCurso (CamelCase) en tu entidad:
     Page<Revision> findByCurso_IdCurso(Long idCurso, Pageable pageable);
+
+
 }
