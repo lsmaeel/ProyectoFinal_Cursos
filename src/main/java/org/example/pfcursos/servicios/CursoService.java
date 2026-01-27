@@ -155,15 +155,15 @@ public class CursoService {
         List<CursoResponse.ProfesorDto> profesores = curso.getProfesores() != null
                 ? curso.getProfesores().stream()
                 .map(p -> new CursoResponse.ProfesorDto(
-                        p.getIdProfesor(),
-                        p.getNombreProfe()))
+                        p.getId_profesor(),
+                        p.getNombre_profe()))
                 .collect(Collectors.toList())
                 : List.of();
 
         List<CursoResponse.InscripcionDto> inscripciones = curso.getInscripciones() != null
                 ? curso.getInscripciones().stream()
                 .map(i -> new CursoResponse.InscripcionDto(
-                        i.getIdInscripcion(),
+                        i.getId_inscripcion(),
                         i.getFechaInscripcion()))
                 .collect(Collectors.toList())
                 : List.of();
@@ -171,7 +171,7 @@ public class CursoService {
         List<CursoResponse.RevisionDto> revisiones = curso.getRevisiones() != null
                 ? curso.getRevisiones().stream()
                 .map(r -> new CursoResponse.RevisionDto(
-                        r.getIdRevision(),
+                        r.getId_revision(),
                         (int) r.getPuntuacion()))
                 .collect(Collectors.toList())
                 : List.of();

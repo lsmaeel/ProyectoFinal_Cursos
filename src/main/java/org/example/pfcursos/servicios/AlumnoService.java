@@ -119,7 +119,7 @@ public class AlumnoService {
         List<AlumnoResponse.InscripcionDto> inscripciones = alumno.getInscripciones() != null
                 ? alumno.getInscripciones().stream()
                 .map(i -> new AlumnoResponse.InscripcionDto(
-                        i.getIdInscripcion(),
+                        i.getId_inscripcion(),
                         i.getFechaInscripcion()))
                 .collect(Collectors.toList())
                 : List.of();
@@ -127,7 +127,7 @@ public class AlumnoService {
         List<AlumnoResponse.RevisionDto> revisiones = alumno.getRevisiones() != null
                 ? alumno.getRevisiones().stream()
                 .map(r -> new AlumnoResponse.RevisionDto(
-                        r.getIdRevision(),
+                        r.getId_revision(),
                         (int) r.getPuntuacion()))
                 .collect(Collectors.toList())
                 : List.of();
