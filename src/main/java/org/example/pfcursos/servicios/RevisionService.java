@@ -51,6 +51,7 @@ public class RevisionService {
                 .map(this::convertToResponse);
     }
 
+    // Obtener revisiones de un curso
     public Page<RevisionResponse> findByCurso(Long idCurso, Pageable pageable) {
         return revisionRepository.findByCurso_IdCurso(idCurso, pageable)
                 .map(this::convertToResponse);
@@ -119,14 +120,11 @@ public class RevisionService {
         revisionRepository.deleteById(id);
     }
 
-    public boolean existsById(Long id) {
-        return revisionRepository.existsById(id);
-    }
-
     public long countRevisiones() {
         return revisionRepository.count();
     }
 
+    // Contar revisiones de un curso
     public long countByCurso(Long idCurso) {
         return revisionRepository.findByCurso_IdCurso(idCurso, Pageable.unpaged())
                 .getTotalElements();

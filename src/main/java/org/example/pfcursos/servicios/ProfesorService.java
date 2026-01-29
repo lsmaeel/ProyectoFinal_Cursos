@@ -43,7 +43,7 @@ public class ProfesorService {
                 .collect(Collectors.toList());
     }
 
-    public ProfesorResponse save(ProfesorRequest request) {
+    public ProfesorResponse saveProfesor(ProfesorRequest request) {
         // No se permiten correos duplicados
         if (profesorRepository.existsByCorreo(request.getCorreo())) {
             throw new IllegalArgumentException("El correo ya está registrado");
@@ -55,7 +55,7 @@ public class ProfesorService {
         }
 
         Profesor profesor = new Profesor();
-        profesor.setNombreProfe(request.getNombre_profe());
+        profesor.setNombre_profe(request.getNombre_profe());
         profesor.setCorreo(request.getCorreo());
         profesor.setPassword(request.getPassword());
 
@@ -80,7 +80,7 @@ public class ProfesorService {
             profesor.setPassword(request.getPassword());
         }
 
-        profesor.setNombreProfe(request.getNombre_profe());
+        profesor.setNombre_profe(request.getNombre_profe());
         profesor.setCorreo(request.getCorreo());
 
         Profesor updatedProfesor = profesorRepository.save(profesor);
@@ -94,9 +94,6 @@ public class ProfesorService {
         profesorRepository.deleteById(id);
     }
 
-    public boolean existsById(Long id) {
-        return profesorRepository.existsById(id);
-    }
 
     public boolean existsByCorreo(String correo) {
         return profesorRepository.existsByCorreo(correo);
@@ -111,7 +108,6 @@ public class ProfesorService {
     public long countProfesores() {
         return profesorRepository.count();
     }
-
 
     public long countProfesoresActivos() {
         return profesorRepository.findActiveProfesores().size();

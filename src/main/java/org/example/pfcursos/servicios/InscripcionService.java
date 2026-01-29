@@ -115,10 +115,7 @@ public class InscripcionService {
         inscripcionRepository.deleteById(id);
     }
 
-    public boolean existsById(Long id) {
-        return inscripcionRepository.existsById(id);
-    }
-
+    // Inscripción de alumno en curso
     public boolean existsByAlumnoYCurso(Long idAlumno, Long idCurso) {
         return inscripcionRepository.existsByAlumnoYCurso(idAlumno, idCurso);
     }
@@ -127,6 +124,7 @@ public class InscripcionService {
         return inscripcionRepository.count();
     }
 
+    // Contar inscripciones de un alumno
     public long countByAlumno(Long idAlumno) {
         return inscripcionRepository.findByAlumnoPaginado(idAlumno, Pageable.unpaged())
                 .getTotalElements();

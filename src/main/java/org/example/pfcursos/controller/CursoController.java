@@ -25,7 +25,7 @@ public class CursoController {
         return cursoService.findAll();
     }
 
-    @GetMapping("/paginated")
+    @GetMapping("/paginacion")
     public Page<CursoResponse> getAllCursosPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -62,7 +62,7 @@ public class CursoController {
 
     @PostMapping
     public CursoResponse createCurso(@Valid @RequestBody CursoRequest request) {
-        return cursoService.save(request);
+        return cursoService.saveCurso(request);
     }
 
     @PutMapping("/{id}")
@@ -81,7 +81,7 @@ public class CursoController {
         return Map.of("message", "Curso eliminado exitosamente");
     }
 
-    @GetMapping("/exists/{id}")
+    @GetMapping("/existe/{id}")
     public Map<String, Boolean> existsById(@PathVariable Long id) {
         return Map.of("exists", cursoService.existsById(id));
     }

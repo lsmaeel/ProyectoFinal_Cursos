@@ -43,12 +43,12 @@ public class AlumnoService {
     }
 
     public AlumnoResponse saveAlumno(AlumnoRequest request) {
-        // Validación: No se permiten correos duplicados
+        // No se permiten correos duplicados
         if (alumnoRepository.existsByCorreo(request.getCorreo())) {
             throw new IllegalArgumentException("El correo ya está registrado");
         }
 
-        // Validación: La contraseña debe tener al menos 8 caracteres, incluyendo letras y números
+        // La contraseña debe tener al menos 8 caracteres, incluyendo letras y números
         if (!validarPassword(request.getPassword())) {
             throw new IllegalArgumentException("La contraseña debe tener al menos 8 caracteres, incluyendo letras y números");
         }
@@ -92,9 +92,6 @@ public class AlumnoService {
         alumnoRepository.deleteById(id);
     }
 
-    public boolean existsById(Long id) {
-        return alumnoRepository.existsById(id);
-    }
 
     public boolean existsByCorreo(String correo) {
         return alumnoRepository.existsByCorreo(correo);

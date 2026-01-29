@@ -26,7 +26,7 @@ public class AlumnoController {
         return alumnoService.findAll();
     }
 
-    @GetMapping("/paginated")
+    @GetMapping("/paginacion")
     public Page<AlumnoResponse> getAllAlumnosPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -63,12 +63,7 @@ public class AlumnoController {
         return Map.of("message", "Alumno eliminado exitosamente");
     }
 
-    @GetMapping("/exists/{id}")
-    public Map<String, Boolean> existsById(@PathVariable Long id) {
-        return Map.of("exists", alumnoService.existsById(id));
-    }
-
-    @GetMapping("/exists/correo/{correo}")
+    @GetMapping("/existe/correo/{correo}")
     public Map<String, Boolean> existsByCorreo(@PathVariable String correo) {
         return Map.of("exists", alumnoService.existsByCorreo(correo));
     }

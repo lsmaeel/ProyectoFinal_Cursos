@@ -24,7 +24,7 @@ public class ProfesorController {
         return profesorService.findAll();
     }
 
-    @GetMapping("/paginated")
+    @GetMapping("/paginacion")
     public List<ProfesorResponse> getAllProfesoresPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -43,7 +43,7 @@ public class ProfesorController {
 
     @PostMapping
     public ProfesorResponse createProfesor(@Valid @RequestBody ProfesorRequest request) {
-        return profesorService.save(request);
+        return profesorService.saveProfesor(request);
     }
 
     @PutMapping("/{id}")
@@ -57,12 +57,8 @@ public class ProfesorController {
         return Map.of("message", "Profesor eliminado exitosamente");
     }
 
-    @GetMapping("/exists/{id}")
-    public Map<String, Boolean> existsById(@PathVariable Long id) {
-        return Map.of("exists", profesorService.existsById(id));
-    }
 
-    @GetMapping("/exists/correo/{correo}")
+    @GetMapping("/existe/correo/{correo}")
     public Map<String, Boolean> existsByCorreo(@PathVariable String correo) {
         return Map.of("exists", profesorService.existsByCorreo(correo));
     }

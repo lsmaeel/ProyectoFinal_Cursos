@@ -53,7 +53,7 @@ public class CursoService {
                 .map(this::convertToResponse);
     }
 
-    public CursoResponse save(CursoRequest request) {
+    public CursoResponse saveCurso(CursoRequest request) {
         //La fecha de inicio debe ser anterior a la fecha de finalización
         if (request.getFechaInicio().isAfter(request.getFechaFin())) {
             throw new IllegalArgumentException("La fecha de inicio debe ser anterior a la fecha de finalización");

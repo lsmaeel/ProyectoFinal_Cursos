@@ -25,7 +25,7 @@ public class InscripcionController {
         return inscripcionService.findAll();
     }
 
-    @GetMapping("/paginated")
+    @GetMapping("/paginacion")
     public Page<InscripcionResponse> getAllInscripcionesPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -71,12 +71,8 @@ public class InscripcionController {
         return Map.of("message", "Inscripción eliminada exitosamente");
     }
 
-    @GetMapping("/exists/{id}")
-    public Map<String, Boolean> existsById(@PathVariable Long id) {
-        return Map.of("exists", inscripcionService.existsById(id));
-    }
 
-    @GetMapping("/exists/alumno/{idAlumno}/curso/{idCurso}")
+    @GetMapping("/existe/alumno/{idAlumno}/curso/{idCurso}")
     public Map<String, Boolean> existsByAlumnoYCurso(
             @PathVariable Long idAlumno,
             @PathVariable Long idCurso) {

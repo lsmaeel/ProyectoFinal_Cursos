@@ -25,7 +25,7 @@ public class RevisionController {
         return revisionService.findAll();
     }
 
-    @GetMapping("/paginated")
+    @GetMapping("/paginacion")
     public List<RevisionResponse> getAllRevisionesPaginated(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -61,10 +61,6 @@ public class RevisionController {
         return Map.of("message", "Revisión eliminada exitosamente");
     }
 
-    @GetMapping("/exists/{id}")
-    public Map<String, Boolean> existsById(@PathVariable Long id) {
-        return Map.of("exists", revisionService.existsById(id));
-    }
 
     @GetMapping("/count")
     public Map<String, Long> countRevisiones() {
