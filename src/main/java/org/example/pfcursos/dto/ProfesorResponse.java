@@ -9,6 +9,7 @@ import java.util.List;
  * DTO for {@link org.example.pfcursos.modelo.Profesor}
  */
 @Value
+
 public class ProfesorResponse implements Serializable {
     Long id_profesor;
     String nombre_profe;

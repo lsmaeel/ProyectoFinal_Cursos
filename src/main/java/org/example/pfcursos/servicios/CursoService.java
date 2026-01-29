@@ -164,6 +164,7 @@ public class CursoService {
                 ? curso.getInscripciones().stream()
                 .map(i -> new CursoResponse.InscripcionDto(
                         i.getId_inscripcion(),
+                        i.getAlumno().getNombre(),
                         i.getFechaInscripcion()))
                 .collect(Collectors.toList())
                 : List.of();
@@ -172,7 +173,9 @@ public class CursoService {
                 ? curso.getRevisiones().stream()
                 .map(r -> new CursoResponse.RevisionDto(
                         r.getId_revision(),
-                        (int) r.getPuntuacion()))
+                        r.getAlumno().getNombre(),
+                        (int) r.getPuntuacion(),
+                        r.getComentario()))
                 .collect(Collectors.toList())
                 : List.of();
 

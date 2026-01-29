@@ -10,6 +10,7 @@ import java.util.List;
  * DTO for {@link org.example.pfcursos.modelo.Curso}
  */
 @Value
+
 public class CursoResponse implements Serializable {
     Long id_curso;
     String titulo;
@@ -35,7 +36,8 @@ public class CursoResponse implements Serializable {
      */
     @Value
     public static class InscripcionDto implements Serializable {
-        Long id_revision;
+        Long id_inscripcion;
+        String nombre_alumno;
         LocalDateTime fechaInscripcion;
     }
 
@@ -45,6 +47,8 @@ public class CursoResponse implements Serializable {
     @Value
     public static class RevisionDto implements Serializable {
         Long id_revision;
+        String nombre_alumno;
         Integer puntuacion;
+        String comentario;
     }
 }

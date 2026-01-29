@@ -9,8 +9,9 @@ import java.time.LocalDateTime;
  * DTO for {@link org.example.pfcursos.modelo.Inscripcion}
  */
 @Value
+
 public class InscripcionResponse implements Serializable {
-    Long id_revision;
+    Long id_inscripcion;
     LocalDateTime fechaInscripcion;
     CursoDto curso;
     AlumnoDto alumno;

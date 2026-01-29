@@ -8,6 +8,7 @@ import java.io.Serializable;
  * DTO for {@link org.example.pfcursos.modelo.Revision}
  */
 @Value
+
 public class RevisionResponse implements Serializable {
     Long id_revision;
     double puntuacion;
