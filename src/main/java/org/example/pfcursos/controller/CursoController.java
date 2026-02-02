@@ -7,6 +7,7 @@ import org.example.pfcursos.servicios.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -50,6 +51,12 @@ public class CursoController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         return cursoService.findByEstado("ACTIVO", PageRequest.of(page, size));
+    }
+
+    @GetMapping("/demandado")
+    public ResponseEntity<CursoResponse> getCursoMasDemandado() {
+        CursoResponse curso = cursoService.getCursoMasDemandado();
+        return ResponseEntity.ok(curso);
     }
 
     @GetMapping("/buscar")

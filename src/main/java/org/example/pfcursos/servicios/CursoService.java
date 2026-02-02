@@ -8,6 +8,7 @@ import org.example.pfcursos.repository.CursoRepository;
 import org.example.pfcursos.repository.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -149,6 +150,16 @@ public class CursoService {
 
     public long countByEstado(String estado) {
         return cursoRepository.findByEstadoIgnoreCase(estado, Pageable.unpaged()).getTotalElements();
+    }
+
+    public CursoResponse getCursoMasDemandado() {
+        List<Curso> resultados = cursoRepository.findTopCursoByInscripciones(PageRequest.of(0, 1));
+
+        if (resultados.isEmpty()) {
+            throw new RuntimeException("No hay inscripciones registradas para determinar el curso más demandado");
+        }
+
+        return convertToResponse(resultados.get(0));
     }
 
     private CursoResponse convertToResponse(Curso curso) {
