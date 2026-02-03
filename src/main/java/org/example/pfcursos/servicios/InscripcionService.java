@@ -68,7 +68,7 @@ public class InscripcionService {
         }
 
         // Un estudiante no puede inscribirse dos veces en el mismo curso
-        if (inscripcionRepository.existsByAlumnoYCurso(request.getId_alumno(), request.getId_curso())) {
+        if (inscripcionRepository.existsByAlumno_IdAlumnoAndCurso_IdCurso(request.getId_alumno(), request.getId_curso())) {
             throw new IllegalArgumentException("El alumno ya está inscrito en este curso");
         }
 
@@ -96,7 +96,7 @@ public class InscripcionService {
         // No existe otra inscripción con la misma combinación
         if (!inscripcion.getAlumno().getIdAlumno().equals(request.getId_alumno()) ||
                 !inscripcion.getCurso().getIdCurso().equals(request.getId_curso())) {
-            if (inscripcionRepository.existsByAlumnoYCurso(request.getId_alumno(), request.getId_curso())) {
+            if (inscripcionRepository.existsByAlumno_IdAlumnoAndCurso_IdCurso(request.getId_alumno(), request.getId_curso())) {
                 throw new IllegalArgumentException("Ya existe una inscripción con estos datos");
             }
         }
@@ -117,7 +117,7 @@ public class InscripcionService {
 
     // Inscripción de alumno en curso
     public boolean existsByAlumnoYCurso(Long idAlumno, Long idCurso) {
-        return inscripcionRepository.existsByAlumnoYCurso(idAlumno, idCurso);
+        return inscripcionRepository.existsByAlumno_IdAlumnoAndCurso_IdCurso(idAlumno, idCurso);
     }
 
     public long countInscripciones() {

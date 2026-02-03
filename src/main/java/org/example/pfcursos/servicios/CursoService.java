@@ -134,7 +134,9 @@ public class CursoService {
                 .orElseThrow(() -> new IllegalArgumentException("Curso no encontrado con ID: " + id));
 
         if (!nuevoEstado.equalsIgnoreCase("ACTIVO") &&
-                !nuevoEstado.equalsIgnoreCase("INACTIVO")) {
+                !nuevoEstado.equalsIgnoreCase("INACTIVO")
+                &&
+                !nuevoEstado.equalsIgnoreCase("FINALIZADO")) {
             throw new IllegalArgumentException("El estado debe ser ACTIVO o INACTIVO");
         }
 

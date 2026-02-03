@@ -67,7 +67,7 @@ public class RevisionService {
                 .orElseThrow(() -> new IllegalArgumentException("Curso no encontrado con ID: " + request.getId_curso()));
 
         // Solo estudiantes inscritos pueden dejar una revisión
-        if (!inscripcionRepository.existsByAlumnoYCurso(request.getId_alumno(), request.getId_curso())) {
+        if (!inscripcionRepository.existsByAlumno_IdAlumnoAndCurso_IdCurso(request.getId_alumno(), request.getId_curso())) {
             throw new IllegalArgumentException("El alumno debe estar inscrito en el curso para dejar una revisión");
         }
 
@@ -96,7 +96,7 @@ public class RevisionService {
         Curso curso = cursoRepository.findById(request.getId_curso())
                 .orElseThrow(() -> new IllegalArgumentException("Curso no encontrado con ID: " + request.getId_curso()));
 
-        if (!inscripcionRepository.existsByAlumnoYCurso(request.getId_alumno(), request.getId_curso())) {
+        if (!inscripcionRepository.existsByAlumno_IdAlumnoAndCurso_IdCurso(request.getId_alumno(), request.getId_curso())) {
             throw new IllegalArgumentException("El alumno debe estar inscrito en el curso para dejar una revisión");
         }
 

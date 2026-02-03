@@ -11,8 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> {
 
-    @Query("SELECT COUNT(i) FROM Inscripcion i WHERE i.alumno.idAlumno = :idAlumno AND i.curso.idCurso = :idCurso")
-    boolean existsByAlumnoYCurso(@Param("idAlumno") Long idAlumno, @Param("idCurso") Long idCurso);
+    boolean existsByAlumno_IdAlumnoAndCurso_IdCurso(Long idAlumno, Long idCurso);
 
     @Query("SELECT i FROM Inscripcion i WHERE i.alumno.idAlumno = :idAlumno")
     Page<Inscripcion> findByAlumnoPaginado(@Param("idAlumno") Long idAlumno, Pageable pageable);

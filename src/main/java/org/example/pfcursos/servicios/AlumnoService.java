@@ -43,7 +43,6 @@ public class AlumnoService {
     }
 
     public AlumnoResponse saveAlumno(AlumnoRequest request) {
-        // No se permiten correos duplicados
         if (alumnoRepository.existsByCorreo(request.getCorreo())) {
             throw new IllegalArgumentException("El correo ya está registrado");
         }
