@@ -2,6 +2,7 @@ package org.example.pfcursos.controller;
 
 
 import jakarta.validation.Valid;
+import org.example.pfcursos.dto.RevisionEstadisticas;
 import org.example.pfcursos.dto.RevisionRequest;
 import org.example.pfcursos.dto.RevisionResponse;
 import org.example.pfcursos.servicios.RevisionService;
@@ -83,13 +84,13 @@ public class RevisionController {
 
     @GetMapping("/curso/{idCurso}/estadisticas")
     public Map<String, Object> getEstadisticasCurso(@PathVariable Long idCurso) {
-        RevisionService.RevisionEstadisticas estadisticas = revisionService.getEstadisticasCurso(idCurso);
+        RevisionEstadisticas estadisticas = revisionService.getEstadisticasCurso(idCurso);
         return Map.of(
                 "idCurso", idCurso,
-                "totalRevisiones", estadisticas.getTotalRevisiones(),
-                "promedio", estadisticas.getPromedio(),
-                "puntuacionMaxima", estadisticas.getPuntuacionMaxima(),
-                "puntuacionMinima", estadisticas.getPuntuacionMinima()
+                "totalRevisiones", estadisticas.totalRevisiones(),
+                "promedio", estadisticas.promedio(),
+                "puntuacionMaxima", estadisticas.puntuacionMaxima(),
+                "puntuacionMinima", estadisticas.puntuacionMinima()
         );
     }
 }

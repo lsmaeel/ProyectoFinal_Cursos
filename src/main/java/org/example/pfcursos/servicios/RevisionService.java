@@ -1,5 +1,6 @@
 package org.example.pfcursos.servicios;
 
+import org.example.pfcursos.dto.RevisionEstadisticas;
 import org.example.pfcursos.dto.RevisionRequest;
 import org.example.pfcursos.dto.RevisionResponse;
 import org.example.pfcursos.modelo.Alumno;
@@ -211,34 +212,4 @@ public class RevisionService {
         );
     }
 
-    public static class RevisionEstadisticas {
-        private final long totalRevisiones;
-        private final double promedio;
-        private final double puntuacionMaxima;
-        private final double puntuacionMinima;
-
-        public RevisionEstadisticas(long totalRevisiones, double promedio,
-                                    double puntuacionMaxima, double puntuacionMinima) {
-            this.totalRevisiones = totalRevisiones;
-            this.promedio = promedio;
-            this.puntuacionMaxima = puntuacionMaxima;
-            this.puntuacionMinima = puntuacionMinima;
-        }
-
-        public long getTotalRevisiones() {
-            return totalRevisiones;
-        }
-
-        public double getPromedio() {
-            return promedio;
-        }
-
-        public double getPuntuacionMaxima() {
-            return puntuacionMaxima;
-        }
-
-        public double getPuntuacionMinima() {
-            return puntuacionMinima;
-        }
-    }
 }
