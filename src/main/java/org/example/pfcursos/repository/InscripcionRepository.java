@@ -13,6 +13,8 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 
     boolean existsByAlumno_IdAlumnoAndCurso_IdCurso(Long idAlumno, Long idCurso);
 
+    boolean existsByCurso_IdCurso(Long idCurso);
+
     @Query("SELECT i FROM Inscripcion i WHERE i.alumno.idAlumno = :idAlumno")
     Page<Inscripcion> findByAlumnoPaginado(@Param("idAlumno") Long idAlumno, Pageable pageable);
 }

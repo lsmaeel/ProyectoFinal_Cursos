@@ -5,7 +5,9 @@ import org.example.pfcursos.dto.CursoResponse;
 import org.example.pfcursos.modelo.Curso;
 import org.example.pfcursos.modelo.Profesor;
 import org.example.pfcursos.repository.CursoRepository;
+import org.example.pfcursos.repository.InscripcionRepository;
 import org.example.pfcursos.repository.ProfesorRepository;
+import org.example.pfcursos.repository.RevisionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +28,9 @@ public class CursoService {
 
     @Autowired
     private ProfesorRepository profesorRepository;
+
+    @Autowired
+    private InscripcionRepository inscripcionRepository;
 
     public List<CursoResponse> findAll() {
         return cursoRepository.findAll().stream()
@@ -115,6 +120,9 @@ public class CursoService {
     public void deleteById(Long id) {
         if (!cursoRepository.existsById(id)) {
             throw new IllegalArgumentException("Curso no encontrado con ID: " + id);
+        }
+        if (inscripcionRepository.existsByCurso_IdCurso(id)) {
+            throw new IllegalStateException("No se puede eliminar el curso porque tiene alumnos inscritos.");
         }
         cursoRepository.deleteById(id);
     }
