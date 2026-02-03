@@ -151,7 +151,7 @@ public class CursoService {
 
 
     public long countByEstado(String estado) {
-        return cursoRepository.findByEstadoIgnoreCase(estado, Pageable.unpaged()).getTotalElements();
+        return cursoRepository.countByEstadoIgnoreCase(estado);
     }
 
     public CursoResponse getCursoMasDemandado() {
