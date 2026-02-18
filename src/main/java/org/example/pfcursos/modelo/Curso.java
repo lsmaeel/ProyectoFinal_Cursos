@@ -2,7 +2,7 @@ package org.example.pfcursos.modelo;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "cursos")
 public class Curso {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_curso", nullable = false, unique = true)
@@ -25,16 +26,17 @@ public class Curso {
     @Column(name = "descripcion", nullable = false, length = 1000)
     private String descripcion;
 
-    @Column(name = "fechaInicio", nullable = false)
+    // Cambiado a LocalDate para coincidir con el input type="date" de React
+    @Column(name = "fecha_inicio", nullable = false)
     private LocalDateTime fechaInicio;
 
-    @Column(name = "fechaFin", nullable = false)
+    @Column(name = "fecha_fin", nullable = false)
     private LocalDateTime fechaFin;
 
     @Column(name = "estado", nullable = false)
     private String estado;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "profesor_curso",
             joinColumns = @JoinColumn(name = "curso_id"),
@@ -45,6 +47,6 @@ public class Curso {
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Inscripcion> inscripciones;
 
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Revision> revisiones;
 }

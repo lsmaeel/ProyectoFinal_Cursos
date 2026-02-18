@@ -2,13 +2,17 @@ package org.example.pfcursos.controller;
 
 import jakarta.validation.Valid;
 import org.example.pfcursos.dto.AlumnoRequest;
+import org.example.pfcursos.dto.LoginResponse;
+import org.example.pfcursos.dto.LoginRequest;
 import org.example.pfcursos.dto.AlumnoResponse;
 import org.example.pfcursos.servicios.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.Map;

@@ -7,6 +7,8 @@ import org.example.pfcursos.servicios.InscripcionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -45,12 +47,11 @@ public class InscripcionController {
         return inscripcionService.findByAlumnoPaginado(idAlumno, PageRequest.of(page, size));
     }
 
-    @GetMapping("/curso/{idCurso}")
-    public Page<InscripcionResponse> getInscripcionesByCurso(
-            @PathVariable Long idCurso,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return inscripcionService.findByCurso(idCurso, PageRequest.of(page, size));
+    @GetMapping("/curso/{id}")
+    public ResponseEntity<Page<InscripcionResponse>> getInscripcionesByCurso(
+            @PathVariable Long id,
+            Pageable pageable) {
+        return ResponseEntity.ok(inscripcionService.findByCurso(id, pageable));
     }
 
     @PostMapping

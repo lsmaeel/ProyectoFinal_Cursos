@@ -7,6 +7,8 @@ import org.example.pfcursos.repository.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.example.pfcursos.dto.LoginRequest;
+import org.example.pfcursos.dto.LoginResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +33,7 @@ public class AlumnoService {
         return alumnoRepository.findAll(pageable)
                 .map(this::convertToResponse);
     }
+
 
     public Optional<AlumnoResponse> findById(Long id) {
         return alumnoRepository.findById(id)
@@ -110,6 +113,7 @@ public class AlumnoService {
 
         return tieneLetras && tieneNumeros;
     }
+
 
     private AlumnoResponse convertToResponse(Alumno alumno) {
         List<AlumnoResponse.InscripcionDto> inscripciones = alumno.getInscripciones() != null

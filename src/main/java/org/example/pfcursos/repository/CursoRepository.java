@@ -15,6 +15,8 @@ public interface CursoRepository extends JpaRepository<Curso, Long> {
 
     long countByEstadoIgnoreCase(String estado);
 
+    long countByEstado(String estado);
+
     Page<Curso> findByTituloContainingIgnoreCaseOrDescripcionContainingIgnoreCase(String titulo, String descripcion, Pageable pageable);
 
     @Query("SELECT i.curso FROM Inscripcion i GROUP BY i.curso ORDER BY COUNT(i) DESC")

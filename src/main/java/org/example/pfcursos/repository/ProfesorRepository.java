@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
@@ -14,4 +15,6 @@ public interface ProfesorRepository extends JpaRepository<Profesor, Long> {
     // Un profesor es activo si tiene al menos un curso asignado
     @Query("SELECT p FROM Profesor p WHERE size(p.cursos) > 0")
     List<Profesor> findActiveProfesores();
+
+    Optional<Profesor> findByCorreo(String correo);
 }

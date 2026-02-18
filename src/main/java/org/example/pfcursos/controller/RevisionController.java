@@ -29,7 +29,7 @@ public class RevisionController {
     @GetMapping("/paginacion")
     public List<RevisionResponse> getAllRevisionesPaginated(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "20") int size) {
         return revisionService.findAll(PageRequest.of(page, size)).getContent();
     }
 
@@ -42,7 +42,7 @@ public class RevisionController {
     public List<RevisionResponse> getRevisionesByCurso(
             @PathVariable Long idCurso,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "20") int size) {
         return revisionService.findByCurso(idCurso, PageRequest.of(page, size)).getContent();
     }
 

@@ -17,4 +17,5 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
 
     @Query("SELECT i FROM Inscripcion i WHERE i.alumno.idAlumno = :idAlumno")
     Page<Inscripcion> findByAlumnoPaginado(@Param("idAlumno") Long idAlumno, Pageable pageable);
+    Page<Inscripcion> findByCurso_IdCurso(Long idCurso, Pageable pageable);
 }

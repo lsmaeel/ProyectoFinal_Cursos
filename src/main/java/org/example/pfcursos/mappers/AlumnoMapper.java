@@ -10,12 +10,12 @@ public interface AlumnoMapper {
 
     @AfterMapping
     default void linkInscripciones(@MappingTarget Alumno alumno) {
-        alumno.getInscripciones().forEach(inscripcione -> inscripcione.setAlumno(alumno));
+        alumno.getInscripciones().forEach(inscripciones -> inscripciones.setAlumno(alumno));
     }
 
     @AfterMapping
     default void linkRevisiones(@MappingTarget Alumno alumno) {
-        alumno.getRevisiones().forEach(revisione -> revisione.setAlumno(alumno));
+        alumno.getRevisiones().forEach(revisiones -> revisiones.setAlumno(alumno));
     }
 
     AlumnoResponse toResponse(Alumno alumno);

@@ -107,7 +107,7 @@ public class CursoService {
         curso.setFechaFin(request.getFechaFin());
         curso.setEstado(request.getEstado().toUpperCase());
 
-        // Actualizar profesores si se proporcionan IDs
+
         if (request.getProfesoresIds() != null) {
             List<Profesor> profesores = profesorRepository.findAllById(request.getProfesoresIds());
             curso.setProfesores(profesores);
@@ -117,14 +117,16 @@ public class CursoService {
         return convertToResponse(updatedCurso);
     }
 
-    public void deleteById(Long id) {
-        if (!cursoRepository.existsById(id)) {
-            throw new IllegalArgumentException("Curso no encontrado con ID: " + id);
-        }
-        if (inscripcionRepository.existsByCurso_IdCurso(id)) {
-            throw new IllegalStateException("No se puede eliminar el curso porque tiene alumnos inscritos.");
-        }
-        cursoRepository.deleteById(id);
+    public void deleteCurso(Long id) {
+        Curso curso = cursoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Curso no encontrado"));
+
+        curso.getProfesores().clear();
+        cursoRepository.save(curso);
+
+        cursoRepository.delete(curso);
+
+        cursoRepository.flush();
     }
 
     public boolean existsById(Long id) {

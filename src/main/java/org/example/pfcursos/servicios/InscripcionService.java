@@ -131,14 +131,11 @@ public class InscripcionService {
     }
 
     public Page<InscripcionResponse> findByCurso(Long idCurso, Pageable pageable) {
-        // Validar que el curso existe
-        if (!cursoRepository.existsById(idCurso)) {
-            throw new IllegalArgumentException("Curso no encontrado con ID: " + idCurso);
-        }
+        // 1. Llamamos al repositorio (Esto ya devuelve un Page, no hace falta cast)
+        Page<Inscripcion> inscripciones = inscripcionRepository.findByCurso_IdCurso(idCurso, pageable);
 
-        return (Page<InscripcionResponse>) inscripcionRepository.findAll(pageable)
-                .map(this::convertToResponse)
-                .filter(inscripcion -> inscripcion.getCurso().getId_curso().equals(idCurso));
+        // 2. Mapeamos a Response usando el .map del propio Page (así no se rompe)
+        return inscripciones.map(this::convertToResponse);
     }
 
     private InscripcionResponse convertToResponse(Inscripcion inscripcion) {

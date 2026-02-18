@@ -10,12 +10,12 @@ public interface CursoMapper {
 
     @AfterMapping
     default void linkInscripciones(@MappingTarget Curso curso) {
-        curso.getInscripciones().forEach(inscripcione -> inscripcione.setCurso(curso));
+        curso.getInscripciones().forEach(inscripciones -> inscripciones.setCurso(curso));
     }
 
     @AfterMapping
     default void linkRevisiones(@MappingTarget Curso curso) {
-        curso.getRevisiones().forEach(revisione -> revisione.setCurso(curso));
+        curso.getRevisiones().forEach(revisiones -> revisiones.setCurso(curso));
     }
 
     CursoResponse toResponse(Curso curso);

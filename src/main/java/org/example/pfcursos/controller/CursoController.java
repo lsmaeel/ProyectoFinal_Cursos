@@ -84,7 +84,7 @@ public class CursoController {
 
     @DeleteMapping("/{id}")
     public Map<String, String> deleteCurso(@PathVariable Long id) {
-        cursoService.deleteById(id);
+        cursoService.deleteCurso(id);
         return Map.of("message", "Curso eliminado exitosamente");
     }
 
